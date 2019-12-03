@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+File:ModulePlatform.xml  
+Date:2019-4-28   
+Encoding:UTF-8  
+Author:Zhong Chaoliang  
+Email:zhongchaoliang@hdu.edu.cn
+Version 1.0
+-->
+
+<ModulePlatform name="ModulesPlatform">
+
+
+    <Modules name="root">
+
+        <!--type 为模块类型，可以自定义进行描述，但是模块组的类型必须要为group，可以有多个模块组-->
+        <ModuleGroup name="network_group" type="group" class="sequoia.modules.GroupModule" description="模块组，可以包含多个模块" version="1.0" author="zcl" >
+            <!-- 模块组里可以配置参数信息
+                       <param name="networkingServiceConfig" ref="network_config"/>
+            <param name="messageDecoderHandler" ref="message_decoder_handler"/>-->
+            
+        <Module name="customer"  type="singleModule" class="test.CustomerModule" description="消息消费者模块" version="1.0"  author="zcl" >
+            <param name="test1" value="0 "/>
+            <param name="test2" value="2"/>
+        </Module>
+
+            <!--  模块组里可以包含模块组，可以多级
+            <ModuleGroup name="customer_group" type="group" class="com.cotek.dispatch.modulesplatform.GroupModuleImpl" description="模块组，可以包含多个模块" version="1.0" author="zcl" >
+                <Module name="customer"  type="customer_group" class="moduleplatformtest.CustomerModule"
+                               description="消息消费者模块" version="1.0"
+                              author="zcl" >
+                    <param name="test1" value="0 "/>
+                    <param name="test2" value="2"/>
+                </Module>
+            </ModuleGroup>-->
+        </ModuleGroup>
+        
+        
+        <!-- 可以单独放模块  -->
+        
+
+        
+        <Module name="produce"  type="singleModule" class="test.ProduceModule"    description="消息生产者模块，param为模块参数，可以任意设置多个" version="1.0"   author="zcl" >
+            <param name="test1" value="0 "/>
+            <param name="test2" value="2"/>
+        </Module>
+      
+    </Modules>
+    
+    <!-- 平台参数设置-->
+    <PlatformSettings>
+        <param name="autostart" value="true"/>
+        <param name="hostname" value="localhost"/>
+        <param name="port" value="4244"/>
+    </PlatformSettings>
+    
+    <!-- 平台模块间通信依赖设置-->
+    <Wires>
+        <Wire name="produce.data" srcModuleName="produce"  duration="0">
+        <!--     duration为消息发送和接收的间隔时间，单位为毫秒，忽略在间隔时间的到达的新消息，当设置为零时，每条消息均发送
+             一个Link可以有多个target -->
+            <target  name="customer.datain"   targetModuleName="customer"  duration="0" />
+        </Wire>
+    </Wires>
+</ModulePlatform>
