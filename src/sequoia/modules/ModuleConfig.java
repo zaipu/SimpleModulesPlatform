@@ -43,13 +43,8 @@ public class ModuleConfig implements IModuleConfig {
                 for (int i = 0; i < lst.size(); i++) {
                     Element e2 = (Element) lst.get(i);
                     String key = e2.attributeValue("name");
-                    String val;
-                    if(e2.attributeValue("ref") != null){
-                        //标记这是一个reference而不是普通数值
-                        val = "&"+e2.attributeValue("ref");
-                    }else {
-                        val = e2.attributeValue("value");
-                    }
+                    String val=e2.attributeValue("value");
+ 
                     params.put(key, val);
                 }
             }
@@ -100,6 +95,7 @@ public class ModuleConfig implements IModuleConfig {
     }
 
 
+    @Override
     public String getDescription() {
         return description;
     }
@@ -109,6 +105,7 @@ public class ModuleConfig implements IModuleConfig {
     }
 
 
+    @Override
     public String getVersion() {
         return version;
     }
@@ -118,6 +115,7 @@ public class ModuleConfig implements IModuleConfig {
     }
 
 
+    @Override
     public String getAuthor() {
         return author;
     }
@@ -127,6 +125,7 @@ public class ModuleConfig implements IModuleConfig {
     }
 
 
+    @Override
     public String getType() {
         return type;
     }
@@ -153,6 +152,7 @@ public class ModuleConfig implements IModuleConfig {
     }
 
 
+    @Override
     public String getName() {
         return name;
     }

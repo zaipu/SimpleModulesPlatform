@@ -58,26 +58,17 @@ public class PlatformConfig {
         return platModuleConfigs;
     }
 
-    //   protected ArrayList<ModuleConfig> getModuleConfigs() {
-    //       return moduleConfigs;
-//    }
-    //   public void setPlatModuleConfigs(ArrayList<ModuleConfig> platModuleConfigs) {
-    //      this.platModuleConfigs = platModuleConfigs;
-    //   }
+
     protected ArrayList<WireConfig> getWireConfigs() {
         return wireConfigs;
     }
 
-    //   public void setLinkConfigs(ArrayList<LinkConfig> wireConfigs) {
-    //       this.wireConfigs = wireConfigs;
-    // }
+
     protected HashMap<String, String> getPlatParaMap() {
         return paraSetMap;
     }
 
-    //  public void setSettParaMap(HashMap<String, String> paraSetMap) {
-    //      this.paraSetMap = paraSetMap;
-    //  }
+
     private void parserDocument(Document xmlDoc) throws IllegalXMLFormatException {
         Element root = xmlDoc.getRootElement();
 
