@@ -57,31 +57,7 @@ public class PlatformConfig {
 
         if (root.getName().equalsIgnoreCase("ModulePlatform")) {
             modulePlatformName = root.attributeValue("name");
-//获得配置信息集
-      /*      Element configs = root.element("Configs");
-            List<Element> config_list = configs.elements("ConfigGroup");
-            if (config_list != null) {
-                for (int i = 0; i < config_list.size(); i++) {
-                    Element config = config_list.get(i);
 
-                    //创建组模块配置文件
-                    ModuleConfig configGroup = new ModuleConfig();
-                    configGroup.processXML(config);
-                    moduleConfigs.add(configGroup);
-                    String configGroupName = config.attributeValue("name");
-
-                    List<Element> eleConfig_list = config.elements("Config");
-                    for (int j = 0; j < eleConfig_list.size(); j++) {
-                        Element em = eleConfig_list.get(j);
-                        //创建单个模块配置文件
-                        ModuleConfig configSingle = new ModuleConfig();
-                        configSingle.processXML(em);
-                        configSingle.setSuperModuleName(configGroupName);
-                        moduleConfigs.add(configSingle);
-                    }
-                }
-            }
-*/
             //获得模块集
             Element modules = root.element("Modules");
             String modulesRootName = modules.attributeValue("name");
