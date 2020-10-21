@@ -12,7 +12,7 @@ import sequoia.modules.AbstractModule;
 import sequoia.modules.IModuleConfig;
 import sequoia.modules.ModuleConfig;
 import sequoia.modules.ModuleStateE;
-import sequoia.modules.wire.PortOut;
+import sequoia.modules.wire.SimplePortOut;
 
 
 
@@ -59,7 +59,7 @@ public class ProduceModule extends AbstractModule implements Runnable {
                 sleep(300);
                 continue;
             }
-            PortOut outPort = (PortOut) getPort("produce.data");
+            SimplePortOut outPort = (SimplePortOut) getPort("produce.data");
             outPort.setValue("test");
             sleep(300);
         }

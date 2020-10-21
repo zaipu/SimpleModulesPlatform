@@ -9,24 +9,20 @@ import java.util.ArrayList;
  * @Email zhongchaoliang@hdu.edu.cn
  * @description:
  */
-public class GroupModule extends AbstractModule implements IModuleGroup{
+public abstract class AbstractGroupModule extends AbstractModule implements IModuleGroup{
 
     protected ArrayList<String> childModuleNames = new ArrayList<>();
 
-    @Override
     public ArrayList<String> getChildModuleNames() {
         return childModuleNames;
     }
 
-    @Override
     public void addChildModule(String moduleName) {
         this.childModuleNames.add(moduleName);
     }
 
-    @Override
     public void removeChildModule(String moduleName) {
         this.childModuleNames.remove(moduleName);
     }
 
-    
 }

@@ -1,9 +1,12 @@
 package sequoia.modules.wire;
 
-import sequoia.modules.IModule;
-import sequoia.modules.ModulePlatform;
+
+
+
 
 import java.util.List;
+import sequoia.modules.IModule;
+import sequoia.modules.ModulePlatform;
 
 /**
  * @author Zhong Chaoliang
@@ -12,14 +15,14 @@ import java.util.List;
  * @Email zhongchaoliang@hdu.edu.cn
  * @description:
  */
-public class PortOut  implements IPort{
+public class SimplePortOut  implements IPort{
     private String portName;
     private String srcModuleName = null;
     private long update_timestamp = System.currentTimeMillis();
     private long update_duration = 0;
     private WireConfig wireConfig = null;
 
-    public PortOut(WireConfig wireConfig) {
+    public SimplePortOut(WireConfig wireConfig) {
         this.wireConfig = wireConfig;
         this.srcModuleName= wireConfig.getSrcModuleName();
         this.portName = wireConfig.getName();

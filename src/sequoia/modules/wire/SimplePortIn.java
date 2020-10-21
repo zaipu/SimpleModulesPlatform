@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @Email zhongchaoliang@hdu.edu.cn
  * @description:
  */
-public class PortIn implements IPort {
+public class SimplePortIn implements IPort {
     private String link_name;
     private Object value;
     private long update_timestamp = System.currentTimeMillis();
@@ -18,7 +18,7 @@ public class PortIn implements IPort {
     private String targetModuleName = null;
     private ArrayList<IValueUpdateListener> listeners = new ArrayList<>();
 
-    public PortIn(Target target) {
+    public SimplePortIn(Target target) {
         this.targetModuleName=target.getT_module();
         this.link_name = target.getName();
         this.update_duration = target.getDuration();

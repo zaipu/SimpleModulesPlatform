@@ -1,7 +1,5 @@
 package sequoia.modules.wire;
 
-
-
 /**
  * @author Zhong Chaoliang
  * @version 0.1
@@ -9,6 +7,7 @@ package sequoia.modules.wire;
  * @Email zhongchaoliang@hdu.edu.cn
  * @description:
  */
+
 public class Target {
     private String t_module;
     private String name;
@@ -46,5 +45,4 @@ public class Target {
     public void setDuration(long duration) {
         this.duration = duration;
     }
-    
 }

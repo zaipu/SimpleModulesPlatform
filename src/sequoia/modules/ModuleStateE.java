@@ -17,6 +17,7 @@ public enum ModuleStateE {
 
     /**
      * 模块状态
+     * Unknown：未知状态
      * Ready：模块初始化成功，进入准备工作状态
      * Working： 模型处在工作状态中
      * Stopped： 停止模块运行，资源没被释放

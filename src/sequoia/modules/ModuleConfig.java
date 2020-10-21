@@ -2,7 +2,6 @@ package sequoia.modules;
 
 import org.dom4j.Element;
 
-
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -43,19 +42,25 @@ public class ModuleConfig implements IModuleConfig {
                 for (int i = 0; i < lst.size(); i++) {
                     Element e2 = (Element) lst.get(i);
                     String key = e2.attributeValue("name");
-                    String val=e2.attributeValue("value");
- 
-                    params.put(key, val);
+                    String value;
+                    if(e2.attributeValue("ref") != null){
+                        //标记这是一个reference而不是普通数值
+                        value = "&"+e2.attributeValue("ref");
+                    }else {
+                        value = e2.attributeValue("value");
+                    }
+                    params.put(key, value);
                 }
             }
 
         } else {
-            throw new IllegalXMLFormatException("XML 文件开头非 ``Module''或者 ``ModuleGroup''");
+            throw new IllegalXMLFormatException("XML 文件开头非 ``Module'',``Config''或者 ``ModuleGroup'',``ConfigGroup''");
         }
     }
 
 
-    public Element toXMLElement(Element element){
+    public Element toXMLElement(Element element)
+    {
         Element e = element.addElement("module");
 
         e.addAttribute("name", name);
@@ -81,9 +86,18 @@ public class ModuleConfig implements IModuleConfig {
         return e;
     }
 
-
+    @Override
     public String getParamValue(String key) {
         return (String) params.get(key);
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getClassName() {
@@ -94,7 +108,6 @@ public class ModuleConfig implements IModuleConfig {
         this.className = className;
     }
 
-
     @Override
     public String getDescription() {
         return description;
@@ -103,7 +116,6 @@ public class ModuleConfig implements IModuleConfig {
     public void setDescription(String description) {
         this.description = description;
     }
-
 
     @Override
     public String getVersion() {
@@ -114,7 +126,6 @@ public class ModuleConfig implements IModuleConfig {
         this.version = version;
     }
 
-
     @Override
     public String getAuthor() {
         return author;
@@ -123,7 +134,6 @@ public class ModuleConfig implements IModuleConfig {
     public void setAuthor(String author) {
         this.author = author;
     }
-
 
     @Override
     public String getType() {
@@ -134,7 +144,7 @@ public class ModuleConfig implements IModuleConfig {
         this.type = type;
     }
 
-
+    @Override
     public String getSuperModuleName() {
         return superModuleName;
     }
@@ -151,17 +161,7 @@ public class ModuleConfig implements IModuleConfig {
         this.params = params;
     }
 
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /*
+/*
     protected void CopyVariables(ModuleConfig mc) {
         mc.setAuthor(this.getAuthor());
         mc.setClassName(this.getClassName());

@@ -3,10 +3,9 @@ package sequoia.modules.wire;
 
 
 import org.dom4j.Element;
-import sequoia.modules.IllegalXMLFormatException;
-
 import java.util.ArrayList;
 import java.util.List;
+import sequoia.modules.IllegalXMLFormatException;
 
 /**
  * @author Zhong Chaoliang
@@ -17,9 +16,13 @@ import java.util.List;
  */
 
 public class WireConfig {
+
     private String srcModuleName;
+
     private String name;
+
     private long duration = 0;
+
     private ArrayList<Target> wireTargets = new ArrayList<>();
 
     public WireConfig() {
@@ -56,33 +59,15 @@ public class WireConfig {
         return srcModuleName;
     }
 
-    public void setSrcModuleName(String srcModuleName) {
-        this.srcModuleName = srcModuleName;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public long getDuration() {
         return duration;
     }
 
-    public void setDuration(long duration) {
-        this.duration = duration;
-    }
-
     public ArrayList<Target> getWireTargets() {
         return wireTargets;
     }
-
-    public void setWireTargets(ArrayList<Target> wireTargets) {
-        this.wireTargets = wireTargets;
-    }
-
-
 }

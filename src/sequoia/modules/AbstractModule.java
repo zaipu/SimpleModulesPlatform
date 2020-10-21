@@ -1,9 +1,8 @@
 package sequoia.modules;
 
-import sequoia.modules.wire.IPort;
-
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicReference;
+import sequoia.modules.wire.IPort;
 
 /**
  * @author Zhong Chaoliang
@@ -27,7 +26,7 @@ public abstract class AbstractModule implements IModule {
     }
 
     @Override
-    public ModuleStateE getModuleState() {
+    public ModuleStateE getModuleStateE() {
         return moduleState.get();
     }
 

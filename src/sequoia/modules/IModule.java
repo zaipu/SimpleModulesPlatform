@@ -15,7 +15,7 @@ public interface IModule {
 
     public String getModuleType();
 
-    public ModuleStateE getModuleState();
+    public ModuleStateE getModuleStateE();
 
     public IModuleConfig getModuleConfig();
 

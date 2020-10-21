@@ -1,17 +1,16 @@
 package sequoia.modules;
 
-import java.io.File;
+
+
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-import sequoia.modules.wire.WireConfig;
-
 import java.io.InputStream;
-import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import sequoia.modules.wire.WireConfig;
 
 /**
  * @author Zhong Chaoliang
@@ -21,33 +20,19 @@ import java.util.List;
  * @description:
  */
 public class PlatformConfig {
-
     private String modulePlatformName;
     private ArrayList<ModuleConfig> platModuleConfigs = new ArrayList<ModuleConfig>();
     private ArrayList<WireConfig> wireConfigs = new ArrayList<>();
-    private HashMap<String, String> paraSetMap = new HashMap<String, String>();
+    private HashMap<String, String> platformParaMap = new HashMap<String, String>();
 
     protected void loadFromXML(InputStream r) throws IllegalXMLFormatException, DocumentException {
-        SAXReader sAXReader = new SAXReader();
-        Document xmlDoc = sAXReader.read(r);
+        SAXReader reader = new SAXReader();
+        Document xmlDoc = reader.read(r);
         parserDocument(xmlDoc);
     }
 
-    protected void loadFromXML(File file) throws IllegalXMLFormatException, DocumentException {
-        SAXReader sAXReader = new SAXReader();
-        Document xmlDoc = sAXReader.read(file);
-        parserDocument(xmlDoc);
-    }
-
-    protected void loadFromXML(Reader reader) throws IllegalXMLFormatException, DocumentException {
-        SAXReader sAXReader = new SAXReader();
-        Document xmlDoc = sAXReader.read(reader);
-        parserDocument(xmlDoc);
-    }
-   
-
-    protected String getParaSetByName(String name) {
-        return paraSetMap.get(name);
+    protected String getPlatParaByName(String name) {
+        return platformParaMap.get(name);
     }
 
     protected String getModulePlatformName() {
@@ -63,11 +48,9 @@ public class PlatformConfig {
         return wireConfigs;
     }
 
-
-    protected HashMap<String, String> getPlatParaMap() {
-        return paraSetMap;
+    protected HashMap<String, String> getPlatformParaMap() {
+        return platformParaMap;
     }
-
 
     private void parserDocument(Document xmlDoc) throws IllegalXMLFormatException {
         Element root = xmlDoc.getRootElement();
@@ -75,7 +58,30 @@ public class PlatformConfig {
         if (root.getName().equalsIgnoreCase("ModulePlatform")) {
             modulePlatformName = root.attributeValue("name");
 //获得配置信息集
+      /*      Element configs = root.element("Configs");
+            List<Element> config_list = configs.elements("ConfigGroup");
+            if (config_list != null) {
+                for (int i = 0; i < config_list.size(); i++) {
+                    Element config = config_list.get(i);
 
+                    //创建组模块配置文件
+                    ModuleConfig configGroup = new ModuleConfig();
+                    configGroup.processXML(config);
+                    moduleConfigs.add(configGroup);
+                    String configGroupName = config.attributeValue("name");
+
+                    List<Element> eleConfig_list = config.elements("Config");
+                    for (int j = 0; j < eleConfig_list.size(); j++) {
+                        Element em = eleConfig_list.get(j);
+                        //创建单个模块配置文件
+                        ModuleConfig configSingle = new ModuleConfig();
+                        configSingle.processXML(em);
+                        configSingle.setSuperModuleName(configGroupName);
+                        moduleConfigs.add(configSingle);
+                    }
+                }
+            }
+*/
             //获得模块集
             Element modules = root.element("Modules");
             String modulesRootName = modules.attributeValue("name");
@@ -110,7 +116,7 @@ public class PlatformConfig {
                     Element e2 = (Element) sett_paramL.get(i);
                     String key = e2.attributeValue("name");
                     String val = e2.attributeValue("value");
-                    paraSetMap.put(key, val);
+                    platformParaMap.put(key, val);
                 }
             }
 

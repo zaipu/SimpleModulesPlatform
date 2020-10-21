@@ -14,7 +14,7 @@ import sequoia.modules.IModuleConfig;
 import sequoia.modules.ModuleConfig;
 import sequoia.modules.ModuleStateE;
 import sequoia.modules.wire.IValueUpdateListener;
-import sequoia.modules.wire.PortIn;
+import sequoia.modules.wire.SimplePortIn;
 
 
 
@@ -40,7 +40,7 @@ public class CustomerModule extends AbstractModule implements Runnable, IValueUp
             bPause = false;
             t_this.start();
 
-            PortIn linkInPort = (PortIn) getPort("customer.datain");
+            SimplePortIn linkInPort = (SimplePortIn) getPort("customer.datain");
             linkInPort.registerListener(this);
         } else {
             bPause = false;
@@ -62,7 +62,7 @@ public class CustomerModule extends AbstractModule implements Runnable, IValueUp
                 sleep(300);
                 continue;
             }
-            PortIn inPort = (PortIn) getPort("customer.datain");
+            SimplePortIn inPort = (SimplePortIn) getPort("customer.datain");
             String string = (String) inPort.getValue();
             System.out.println("linkInPort.getValue():" + string);
             sleep(300);
