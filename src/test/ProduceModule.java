@@ -14,15 +14,15 @@ import sequoia.modules.ModuleConfig;
 import sequoia.modules.ModuleStateE;
 import sequoia.modules.wire.SimplePortOut;
 
-
-
-
-
 /**
  *
  * @author Zhong Chaoliang
  */
 public class ProduceModule extends AbstractModule implements Runnable {
+
+    private Thread t_this;
+    private boolean bRun = false;
+    private boolean bPause = false;
 
     @Override
     public void init(IModuleConfig cfg) throws Exception {

@@ -14,9 +14,7 @@ import sequoia.modules.wire.IPort;
 public abstract class AbstractModule implements IModule {
     protected String moduleName;
     protected ModuleConfig moduleConfig;
-    protected Thread t_this;
-    protected boolean bRun = false;
-    protected boolean bPause=false;
+
 
     protected HashMap<String, IPort> portsHashMap = new HashMap<>();
     public final AtomicReference<ModuleStateE> moduleState = new AtomicReference<>(ModuleStateE.UNKNOWN);

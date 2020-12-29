@@ -23,7 +23,10 @@ import sequoia.modules.wire.SimplePortIn;
  * @author Zhong Chaoliang
  */
 public class CustomerModule extends AbstractModule implements Runnable, IValueUpdateListener {
-
+    private Thread t_this;
+    private boolean bRun = false;
+    private boolean bPause=false;
+    
     @Override
     public void init(IModuleConfig cfg) throws Exception {
         moduleConfig = (ModuleConfig) cfg;

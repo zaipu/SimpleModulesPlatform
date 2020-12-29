@@ -53,6 +53,7 @@ public class ModulePlatformTest {
             //启动平台线程，在业务场景下，无需启动该平台线程，只需持有platform对象就好。
             platform.startPlatform();
             
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
