@@ -13,18 +13,18 @@ public class AbstractTaskModule extends AbstractThreadModule {
 
     protected int intervalTimeI = 1000;//2000毫秒，2秒
 
-    public static enum ConnectionState {
+  //  public static enum ConnectionState {
 
-        NO_CONNECTION, // The client has not connected.
-        FAILED_CONNECTION, // The client tried to connect and failed.
-        CONNECTED // Client is connected to server.
-    }
+   //     NO_CONNECTION, // The client has not connected.
+   //     FAILED_CONNECTION, // The client tried to connect and failed.
+  //      CONNECTED // Client is connected to server.
+ //   }
 
-    public final AtomicReference<ConnectionState> connState = new AtomicReference<ConnectionState>(ConnectionState.NO_CONNECTION);
+ //   public final AtomicReference<ConnectionState> connState = new AtomicReference<ConnectionState>(ConnectionState.NO_CONNECTION);
 
-    public ConnectionState getConnState() {
-        return connState.get();
-    }
+  //  public ConnectionState getConnState() {
+  //      return connState.get();
+  //  }
 
     @Override
     public void run() {
